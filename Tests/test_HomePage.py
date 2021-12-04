@@ -6,8 +6,8 @@ from Tests.test_base import BaseTest
 
 
 # to run all tests command: pytest Tests/test_HomePage.py
-# to run all tests and log to html format: pytest Tests/test_LoginPage.py -v --html=./hubSpot.html
-# to run all tests and log to html format in parallel mode execution: pytest Tests/test_LoginPage.py -v -n 3 --html=./hubSpot.html
+# to run all tests and log to html format: pytest Tests/test_HomePage.py -v --html=./hubSpot.html
+# to run all tests and log to html format in parallel mode execution: pytest Tests/test_HomePage.py -v -n 3 --html=./hubSpot.html
 
 
 class TestHomePageMainMenu(BaseTest):
@@ -58,3 +58,27 @@ class TestHomePageMainMenu(BaseTest):
         self.homePage.move_to_submenu_and_click_at_first_level(HomePage.BOOKS, HomePage.PERIODICAL_BOOKS)
         periodicals_title = self.homePage.get_element_text(HomePage.PERIODICAL_BOOKS_HEADER)
         assert periodicals_title == TestData.PERIODICALS_TITLE
+
+    # test submenu "Билингвы и книги на иностранных языках" of button "Книги" is clickable and leads to proper page - submenu "Билингвы"
+    def test_bilingual_in_book_button_at_second_submenu(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_submenu_and_click_at_second_level(HomePage.BOOKS, HomePage.BILINGUAL_FIRST_SUBMENU,
+                                                                HomePage.BILINGUAL_BOOKS)
+        bilingual_title = self.homePage.get_element_text(HomePage.BILINGUAL_BOOKS_HEADER)
+        assert bilingual_title == TestData.BILINGUAL_TITLE
+
+    # test submenu "Комиксы, Манга, Артбуки" of button "Книги" is clickable and leads to proper page - submenu "Манга"
+    def test_manga_in_book_button_at_second_submenu(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_submenu_and_click_at_second_level(HomePage.BOOKS, HomePage.MANGA_FIRST_SUBMENU,
+                                                                HomePage.MANGA_BOOKS)
+        manga_books_title = self.homePage.get_element_text(HomePage.MANGA_BOOKS_HEADER)
+        assert manga_books_title == TestData.MANGA_BOOK_TITLE
+
+    # test submenu "Комиксы, Манга, Артбуки" of button "Книги" is clickable and leads to proper page - submenu "Манга"
+    def test_religion_in_book_button_at_second_submenu(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_submenu_and_click_at_second_level(HomePage.BOOKS, HomePage.RELIGION_FIRST_SUBMENU,
+                                                                HomePage.RELIGION_BOOKS)
+        religion_books_title = self.homePage.get_element_text(HomePage.RELIGION_BOOKS_HEADER)
+        assert religion_books_title == TestData.RELIGION_BOOK_TITLE

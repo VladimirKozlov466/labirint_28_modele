@@ -13,4 +13,9 @@ class TestData:
     ALL_BOOKS_TITLE = "Книги"
     TEENS_BOOKS_TITLE = "Молодежная литература"
     PERIODICALS_TITLE = "Периодические издания"
+    BILINGUAL_TITLE = "Билингвы"
+    CHILD_BOOK_TITLE = "Детский досуг"
+    MANGA_BOOK_TITLE = "Манга для детей"
+    RELIGION_BOOK_TITLE = "Религии мира"
+
 

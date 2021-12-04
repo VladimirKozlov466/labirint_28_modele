@@ -57,8 +57,8 @@ class BasePage:
         main_menu = self.find_one_element(by_locator)
         action = ActionChains(self.driver)
         action.move_to_element(main_menu).perform()
-        submenu = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(submenu_locator))
+        submenu = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(submenu_locator))
         action.move_to_element(submenu).perform()
-        second_level_submenu = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(second_level_locator))
+        second_level_submenu = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable(second_level_locator))
         second_level_submenu.click()
 
