@@ -10,4 +10,7 @@ class TestData:
     BOOKS_BUTTON_DESCRIPTION = "Книги"
     TITLE_OF_BOOK_PAGE = "Книги"
     TITLE_OF_MAIN_YEAR_BOOK_PAGE = "Главные книги 2021"
+    ALL_BOOKS_TITLE = "Книги"
+    TEENS_BOOKS_TITLE = "Молодежная литература"
+    PERIODICALS_TITLE = "Периодические издания"
 

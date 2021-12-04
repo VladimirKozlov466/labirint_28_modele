@@ -7,11 +7,18 @@ class HomePage(BasePage):
 
     """By locators - OR"""
     URL = TestData.BASE_URL
+
     # locators of main menu bar for button "Книги" and submenu buttons
     BOOKS = (By.XPATH, '//a[@class="b-header-b-menu-e-text" and contains(text(), "Книги")]')
     BOOKS_PAGE_HEADER = (By.XPATH, '//h1[contains(text(), "Книги")]')
     MAIN_OF_THE_YEAR = (By.XPATH, '//a[@class="b-menu-list-title b-menu-list-title-first" and contains(text(), "Главное 2021")]')
     MAIN_OF_THE_YEAR_HEADER = (By.XPATH, '//h1[contains(text(), "Главные книги 2021")]')
+    ALL_BOOKS = (By.XPATH, '//a[@class="b-menu-list-title b-menu-list-title-first" and contains(text(), "Все книги")]')
+    ALL_BOOKS_HEADER = (By.XPATH, '//h1[contains(text(), "Книги")]')
+    TEENS_BOOKS = (By.XPATH, '//a[@class="b-menu-list-title b-menu-list-title-first" and contains(text(), "Молодежная литература")]')
+    TEENS_BOOKS_HEADER = (By.XPATH, '//h1[contains(text(), "Молодежная литература")]')
+    PERIODICAL_BOOKS = (By.XPATH, '//a[@class="b-menu-list-title b-menu-list-title-first" and contains(text(), "Периодические издания")]')
+    PERIODICAL_BOOKS_HEADER = (By.XPATH, '//h1[contains(text(), "Периодические издания")]')
 
 
     """constructor of the page class"""
