@@ -37,6 +37,13 @@ class HomePage(BasePage):
     RELIGION_BOOKS = (By.XPATH, '//a[@class="b-menu-list-title " and contains(text(), "Религии мира")]')
     RELIGION_BOOKS_HEADER = (By.XPATH, '//h1[contains(text(), "Религии мира")]')
 
+    # locators for setting of user region location
+    REGION_ICON_BUTTON = (By.XPATH, '//span[@class="js-header-menu-region-name"]')
+    REGION_CURRENT_SETTING = (By.XPATH, '//span[@class="region-location-icon-txt "]')
+    REGION_SEARCH_FIELD = (By.ID, "region-post")
+    # locator for auto-advice in search region field
+    REGION_GUESS_LUST = (By.XPATH, '//a[@class="a-item"]')
+
 
 
 

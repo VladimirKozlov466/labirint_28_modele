@@ -82,3 +82,47 @@ class TestHomePageMainMenu(BaseTest):
                                                                 HomePage.RELIGION_BOOKS)
         religion_books_title = self.homePage.get_element_text(HomePage.RELIGION_BOOKS_HEADER)
         assert religion_books_title == TestData.RELIGION_BOOK_TITLE
+
+    # test for setting current Region
+    def test_to_set_current_region(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.do_click(HomePage.REGION_CURRENT_SETTING)
+        self.homePage.clear_text_and_send_text_with_enter(HomePage.REGION_SEARCH_FIELD, TestData.CITY_TO_SET)
+        city_after_setting = self.homePage.get_element_text(HomePage.REGION_CURRENT_SETTING)
+        assert city_after_setting == TestData.CURRENT_CITY
+
+    # test auto-advice for setting current Region in Cyrillic give proper Cyrillic variant
+    def test_auto_advice_to_set_current_region_in_cyrillic_works(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.do_click(HomePage.REGION_CURRENT_SETTING)
+        self.homePage.clear_text_and_send_text(HomePage.REGION_SEARCH_FIELD, TestData.CITY_TO_SET_IN_CYRILLIC)
+        self.auto_advice_cities = self.homePage.find_several_element(HomePage.REGION_GUESS_LUST)
+        first_city_in_list = self.auto_advice_cities[0]
+        assert TestData.FIRST_CITY_IN_AUTO_ADVICE in first_city_in_list.text
+
+    # test auto-advice for setting current Region when cyrillic name entered in English give proper Cyrillic variant
+    def test_auto_advice_to_set_current_region_in_wrong_language_works(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.do_click(HomePage.REGION_CURRENT_SETTING)
+        self.homePage.clear_text_and_send_text(HomePage.REGION_SEARCH_FIELD, TestData.CITY_TO_SET_WRONG_LANGUAGE)
+        self.auto_advice_cities = self.homePage.find_several_element(HomePage.REGION_GUESS_LUST)
+        first_city_in_list = self.auto_advice_cities[0]
+        assert TestData.FIRST_CITY_IN_AUTO_ADVICE_IN_CYRILLIC in first_city_in_list.text
+
+    # test setting current Region in Cyrillic in auto-advice with proper Cyrillic name
+    def test_to_set_current_region_in_cyrillic_works_via_auto_advice(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.do_click(HomePage.REGION_CURRENT_SETTING)
+        self.homePage.clear_text_and_send_text(HomePage.REGION_SEARCH_FIELD, TestData.CITY_TO_SET_IN_CYRILLIC)
+        self.auto_advice_cities = self.homePage.find_several_element(HomePage.REGION_GUESS_LUST)
+        self.auto_advice_cities[0].click()
+        assert self.homePage.get_element_text(HomePage.REGION_CURRENT_SETTING) == TestData.FIRST_CITY_IN_AUTO_ADVICE
+
+    # test setting current Region in Cyrillic in auto-advice with Cyrillic name send by Latin letters
+    def test_to_set_current_region_entered_cyrillic_by_latin_letters_works_via_auto_advice(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.do_click(HomePage.REGION_CURRENT_SETTING)
+        self.homePage.clear_text_and_send_text(HomePage.REGION_SEARCH_FIELD, TestData.CITY_TO_SET_WRONG_LANGUAGE)
+        self.auto_advice_cities = self.homePage.find_several_element(HomePage.REGION_GUESS_LUST)
+        self.auto_advice_cities[0].click()
+        assert self.homePage.get_element_text(HomePage.REGION_CURRENT_SETTING) == TestData.FIRST_CITY_IN_AUTO_ADVICE_IN_CYRILLIC

@@ -18,4 +18,15 @@ class TestData:
     MANGA_BOOK_TITLE = "Манга для детей"
     RELIGION_BOOK_TITLE = "Религии мира"
 
+    # CURRENT Region setting
+    CITY_TO_SET = "Екатеринбург"
+    CURRENT_CITY = "Екатеринбург"
+
+    # equal to "москва" in cyrillic
+    CITY_TO_SET_IN_CYRILLIC = "Казань"
+    FIRST_CITY_IN_AUTO_ADVICE = "Казань"
+
+    CITY_TO_SET_WRONG_LANGUAGE = "vjcrdf"
+    FIRST_CITY_IN_AUTO_ADVICE_IN_CYRILLIC = "Москва"
+
 
