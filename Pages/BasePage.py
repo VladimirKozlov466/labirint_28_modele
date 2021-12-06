@@ -46,6 +46,11 @@ class BasePage:
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
         return bool(element)
 
+    """to check that element is NOT visible"""
+    def is_not_visible(self, by_locator) -> bool:
+        element = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(by_locator))
+        return bool(element)
+
     """ to get title of the loaded page"""
     def get_title(self, title):
         WebDriverWait(self.driver, 10).until(EC.title_is(title))

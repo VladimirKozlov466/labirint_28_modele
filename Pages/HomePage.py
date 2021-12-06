@@ -1,3 +1,4 @@
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from Config.config import TestData
@@ -7,6 +8,9 @@ class HomePage(BasePage):
 
     """By locators - OR"""
     URL = TestData.BASE_URL
+
+    # locator for "Лабиринт" logo by which we can return at home page
+    LABIRINT_MAIN_LOGO = (By.XPATH, '//span[@class="b-header-b-logo-e-logo"]')
 
     # locators of main menu bar for button "Книги" and submenu buttons
     BOOKS = (By.XPATH, '//a[@class="b-header-b-menu-e-text" and contains(text(), "Книги")]')
@@ -44,8 +48,19 @@ class HomePage(BasePage):
     # locator for auto-advice in search region field
     REGION_GUESS_LUST = (By.XPATH, '//a[@class="a-item"]')
 
+    # locators for header panel
+    # for button "Сообщения"
+    MESSAGE_BUTTON = (By.XPATH, '//span[@class="b-header-b-personal-e-text" and contains(text(), "Сообщения")]')
+    # for popup "Сообщения" window
+    POPUP_MESSAGE_BUTTON_WINDOW = (By.XPATH, '//div[@class="b-menu-list-title font_regular"]')
 
+    # for button "Мой Лабиринт"
+    MY_LABIRINT_BUTTON = (By.XPATH, '//li[@class="b-header-b-personal-e-list-item have-dropdown b-header-b-personal-e-list-item_cabinet"]')
+    POPUP_MY_LABIRINT_BUTTON_WINDOW = (By.XPATH, '//div[@class="b-header-login-action-logo-e-wrap"]')
 
+    # for button "Отложено"
+    POSTPONED_BOOKS_BUTTON = (By.XPATH, '//span[@class="b-header-b-personal-e-icon b-header-b-personal-e-icon-m-putorder b-header-e-sprite-background"]')
+    POPUP_POSTPONED_BOOKS_WINDOW = (By.XPATH, '//div[contains(text(), "Здесь будут храниться ваши отложенные товары.")]')
 
 
     """constructor of the page class"""
@@ -59,5 +74,9 @@ class HomePage(BasePage):
     def get_home_page_title(self, title):
         return self.get_title(title)
 
-    """this is used to check sign up link"""
+    """this is used to move cursor away from element to desired element"""
+    def move_away_from_element(self, by_locator):
+        element_to_move = self.find_one_element(by_locator)
+        action = ActionChains(self.driver)
+        action.move_to_element(element_to_move).perform()
 

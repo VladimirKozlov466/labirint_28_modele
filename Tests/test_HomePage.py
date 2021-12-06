@@ -126,3 +126,55 @@ class TestHomePageMainMenu(BaseTest):
         self.auto_advice_cities = self.homePage.find_several_element(HomePage.REGION_GUESS_LUST)
         self.auto_advice_cities[0].click()
         assert self.homePage.get_element_text(HomePage.REGION_CURRENT_SETTING) == TestData.FIRST_CITY_IN_AUTO_ADVICE_IN_CYRILLIC
+
+    # test that popup window appear when move over "Сообщение" button (keep in mind that "is_visible" is bool method)
+    def test_popup_window_message_button_appear(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_show_submenu(HomePage.MESSAGE_BUTTON)
+        popup_window = self.homePage.is_visible(HomePage.POPUP_MESSAGE_BUTTON_WINDOW)
+        assert popup_window is True
+
+    # test that popup window appear when move over "Сообщение" button and disappeared when move cursor away
+    def test_popup_window_message_button_disappeared(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_show_submenu(HomePage.MESSAGE_BUTTON)
+        popup_window = self.homePage.is_visible(HomePage.POPUP_MESSAGE_BUTTON_WINDOW)
+        assert popup_window is True
+        self.homePage.move_away_from_element(HomePage.LABIRINT_MAIN_LOGO)
+        window_disappeared = self.homePage.is_not_visible(HomePage.POPUP_MY_LABIRINT_BUTTON_WINDOW)
+        assert window_disappeared is True
+
+    # test that popup window appear when move over "Мой Лабиринт" button (keep in mind that "is_visible" is bool method)
+    def test_popup_window_my_labirint_button_appear(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_show_submenu(HomePage.MY_LABIRINT_BUTTON)
+        popup_window = self.homePage.is_visible(HomePage.POPUP_MY_LABIRINT_BUTTON_WINDOW)
+        assert popup_window is True
+
+    # test that popup window appear when move over "Мой Лабиринт" button and disappeared when move cursor away
+    def test_popup_window_my_labirint_button_disappeared(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_show_submenu(HomePage.MY_LABIRINT_BUTTON)
+        popup_window = self.homePage.is_visible(HomePage.POPUP_MY_LABIRINT_BUTTON_WINDOW)
+        assert popup_window is True
+        self.homePage.move_away_from_element(HomePage.LABIRINT_MAIN_LOGO)
+        window_disappeared = self.homePage.is_not_visible(HomePage.POPUP_MY_LABIRINT_BUTTON_WINDOW)
+        assert window_disappeared is True
+
+    # test that popup window appear when move over "Отложено" button (keep in mind that "is_visible" is bool method)
+    def test_popup_window_postponed_button_appear(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_show_submenu(HomePage.POSTPONED_BOOKS_BUTTON)
+        popup_window = self.homePage.is_visible(HomePage.POPUP_POSTPONED_BOOKS_WINDOW)
+        assert popup_window is True
+
+    # test that popup window appear when move over "Отложено" button and disappeared when move cursor away
+    def test_popup_window_my_postponed_button_disappeared(self):
+        self.homePage = HomePage(self.driver)
+        self.homePage.move_to_show_submenu(HomePage.POSTPONED_BOOKS_BUTTON)
+        popup_window = self.homePage.is_visible(HomePage.POPUP_POSTPONED_BOOKS_WINDOW)
+        assert popup_window is True
+        self.homePage.move_away_from_element(HomePage.LABIRINT_MAIN_LOGO)
+        window_disappeared = self.homePage.is_not_visible(HomePage.POPUP_POSTPONED_BOOKS_WINDOW)
+        assert window_disappeared is True
+
