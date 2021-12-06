@@ -90,5 +90,16 @@ class BasePage:
         second_level_submenu = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable(second_level_locator))
         second_level_submenu.click()
 
+    """to get attribute of element"""
+    def get_attribute_value(self, by_locator, attr_name):
+        element = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(by_locator))
+        value = element.get_attribute(attr_name)
+        return value
+
+    """to scroll into view"""
+    def scroll_to_element(self, element):
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
+
 
 
