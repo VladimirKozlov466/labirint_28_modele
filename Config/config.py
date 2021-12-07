@@ -29,4 +29,10 @@ class TestData:
     CITY_TO_SET_WRONG_LANGUAGE = "vjcrdf"
     FIRST_CITY_IN_AUTO_ADVICE_IN_CYRILLIC = "Москва"
 
+    # Data for PostponePage tests
+    NUMBER_OF_BOOKS_TO_POSTPONE = 3
+
+    # Successful deletion of postponed books message
+    SUCCESSFUL_DELETION = "Выбранные товары удалены!"
+
 

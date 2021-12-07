@@ -12,4 +12,4 @@ def init_driver(request):
         web_driver = webdriver.Firefox(executable_path=TestData.FIREFOX_EXECUTABLE_PATH)
     request.cls.driver = web_driver
     yield
-    web_driver.close()
+    web_driver.quit()

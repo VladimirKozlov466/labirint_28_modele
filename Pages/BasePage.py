@@ -1,9 +1,14 @@
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 """This class is the parent of all pages"""
 """it contains all the generic methods and utilities for all pages"""
+
+# locator for button "Принять" accept cookies policy
+COOKIES_POLICY_BUTTON = (By.XPATH, '//button[@class="cookie-policy__button js-cookie-policy-agree"]')
 
 
 class BasePage:
@@ -49,6 +54,12 @@ class BasePage:
     """to check that element is NOT visible"""
     def is_not_visible(self, by_locator) -> bool:
         element = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(by_locator))
+        return bool(element)
+
+    """to check that element is NOT visible"""
+
+    def element_is_not_visible(self, by_element) -> bool:
+        element = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element(by_element))
         return bool(element)
 
     """ to get title of the loaded page"""
@@ -99,6 +110,10 @@ class BasePage:
     """to scroll into view"""
     def scroll_to_element(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
+    """this method accept cookies policy and close popup window"""
+    def accept_cookies_policy(self):
+        self.do_click(COOKIES_POLICY_BUTTON)
 
 
 
