@@ -1,6 +1,4 @@
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-
 from Config.config import TestData
 from Pages.BasePage import BasePage
 
@@ -13,7 +11,6 @@ class PostponePage(BasePage):
     LABIRINT_MAIN_LOGO = (By.XPATH, '//a[@title="Лабиринт - самый большой книжный интернет магазин"]')
 
     # for button "Отложено"
-    # POSTPONED_BOOKS_BUTTON = (By.XPATH, '//span[@class="b-header-b-personal-e-icon b-header-b-personal-e-icon-m-putorder b-header-e-sprite-background"]')
     POSTPONED_BOOKS_BUTTON = (By.XPATH, '//a[@class="b-header-b-personal-e-link top-link-main top-link-main_putorder"]')
     # for symbol "heart" - "отложить" for books at Home Page in chapter "Что почитать: выбор редакции"
     HEART_SYMBOL_AT_HOME_PAGE = (By.XPATH, '//a[@data-tooltip_title="Отложить"]')
@@ -22,7 +19,8 @@ class PostponePage(BasePage):
     # locator for button which close popup window alerting that book postponed
     CLOSE_POPUP_BOOK_POSTPONED = (By.XPATH, '//a[@class="b-basket-popinfo-close"]')
     # locator of quantity postponed books at the header of the page
-    QUANTITY_OF_POSTPONED_BOOKS = (By.XPATH, '//span[@class="b-header-b-personal-e-icon-count-m-putorder basket-in-dreambox-a"]')
+    QUANTITY_OF_POSTPONED_BOOKS = (By.XPATH, '//span[@class="b-header-b-personal-e-icon-count-m-putorder '
+                                             'basket-in-dreambox-a"]')
     # locator for deletion of book from postponed
     DELETE_POSTPONED_BOOK = (By.XPATH, '//span[@class="b-list-item-hover pointer"]')
     # for description of books in chapter "Что почитать: выбор редакции" displayed at Home page
@@ -41,19 +39,21 @@ class PostponePage(BasePage):
     # locator for "Выделить все" button  at Postponed page
     SELECT_ALL_POSTPONED_BOOKS = (By.XPATH, '//a[@title="Выделить все отложенные товары"]')
     # locators of checkboxes to mark books at Postponed page
-    CHECKBOX_POSTPONED_BOOKS = (By.XPATH, '//label[@class="checkbox-ui checkbox-ui-m-bg checkbox-ui-m-multi checkbox-ui-m-big"]')
+    CHECKBOX_POSTPONED_BOOKS = (By.XPATH, '//label[@class="checkbox-ui checkbox-ui-m-bg checkbox-ui-m-multi '
+                                          'checkbox-ui-m-big"]')
     # locator of "Удалить" button in popup menu which appears if any of checkboxes to mark book were enabled
     DELETE_SELECTED_BOOKS = (By.XPATH, '//a[contains(text(),"Удалить")]')
     # locator for brief description of all postponed books at Postponed page
     ALL_SELECTED_BOOKS = (By.XPATH, '//div[@class="product-cover short-title"]')
     # locator for button "В КОРЗИНУ" which is placed below postponed book at the Postpone page
-    MOVE_IN_BASKET_FM_POSTPONE_BUTTON = (By.XPATH, '//a[@class="btn buy-link btn-primary" and contains(text(), "В КОРЗИНУ")]')
+    MOVE_IN_BASKET_FM_POSTPONE_BUTTON = (By.XPATH, '//a[@class="btn buy-link btn-primary" and contains(text(), '
+                                                   '"В КОРЗИНУ")]')
     # locator for button "ОФОРМИТЬ" which is placed below postponed book at the Postpone page if book was added to
     # basket by button "В КОРЗИНУ"
-    SWITCH_TO_CHECKOUT_BOOK_IN_BASKET_FM_POSTPONE_PAGE = (By.XPATH, '//a[@class="btn buy-link btn-more" and contains(text(), "ОФОРМИТЬ")]')
+    SWITCH_TO_CHECKOUT_BOOK_IN_BASKET_FM_POSTPONE_PAGE = (By.XPATH, '//a[@class="btn buy-link btn-more" and contains('
+                                                                    'text(), "ОФОРМИТЬ")]')
     # locator for button which close popup window alerting that book postponed
     CLOSE_POPUP_POSTPONED_BOOK_MOVED_IN_BASKET = (By.XPATH, '//a[@class="b-basket-popinfo-close"]')
-
 
     """constructor of the page class"""
     def __init__(self, driver):
@@ -74,4 +74,3 @@ class PostponePage(BasePage):
         alert = self.driver.switch_to.alert
         alert.accept()
         self.do_click(PostponePage.LABIRINT_MAIN_LOGO)
-

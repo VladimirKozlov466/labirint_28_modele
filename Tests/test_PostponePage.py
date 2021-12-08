@@ -1,8 +1,4 @@
 import pytest
-import time
-
-from selenium.webdriver import ActionChains
-
 from Config.config import TestData
 from Pages.PostponePage import PostponePage
 from Tests.test_base import BaseTest
@@ -244,6 +240,3 @@ class TestPostponeAtHomePage(BaseTest):
         last_added_in_basket_name = self.list_of_book_names_in_basket[0].text
         assert name_of_last_postponed_book == last_added_in_basket_name
         assert last_added_in_basket_name in first_book_name
-
-
-
