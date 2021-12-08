@@ -1,3 +1,6 @@
+from selenium.webdriver.common.by import By
+
+
 class TestData:
     CHROME_EXECUTABLE_PATH = "/Users/driverChrome/chromedriver"
     FIREFOX_EXECUTABLE_PATH = "/Users/vladimirkozlov/Downloads/geckodriver 2"
@@ -34,5 +37,14 @@ class TestData:
 
     # Successful deletion of postponed books message
     SUCCESSFUL_DELETION = "Выбранные товары удалены!"
+
+    # Names of attributes
+    ATTRIBUTE_ID = "id"
+    ATTRIBUTE_TITLE = "title"
+
+    # Cross page locators
+
+    # locator for Basket "Корзина" counter
+    BASKET_COUNTER = (By.XPATH, '//span[@class="b-header-b-personal-e-icon-count-m-cart basket-in-cart-a"]')
 
 

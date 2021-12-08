@@ -46,8 +46,13 @@ class PostponePage(BasePage):
     DELETE_SELECTED_BOOKS = (By.XPATH, '//a[contains(text(),"Удалить")]')
     # locator for brief description of all postponed books at Postponed page
     ALL_SELECTED_BOOKS = (By.XPATH, '//div[@class="product-cover short-title"]')
-
-
+    # locator for button "В КОРЗИНУ" which is placed below postponed book at the Postpone page
+    MOVE_IN_BASKET_FM_POSTPONE_BUTTON = (By.XPATH, '//a[@class="btn buy-link btn-primary" and contains(text(), "В КОРЗИНУ")]')
+    # locator for button "ОФОРМИТЬ" which is placed below postponed book at the Postpone page if book was added to
+    # basket by button "В КОРЗИНУ"
+    SWITCH_TO_CHECKOUT_BOOK_IN_BASKET_FM_POSTPONE_PAGE = (By.XPATH, '//a[@class="btn buy-link btn-more" and contains(text(), "ОФОРМИТЬ")]')
+    # locator for button which close popup window alerting that book postponed
+    CLOSE_POPUP_POSTPONED_BOOK_MOVED_IN_BASKET = (By.XPATH, '//a[@class="b-basket-popinfo-close"]')
 
 
     """constructor of the page class"""

@@ -115,6 +115,9 @@ class BasePage:
     def accept_cookies_policy(self):
         self.do_click(COOKIES_POLICY_BUTTON)
 
-
+    """this used to refresh currently opened page"""
+    def refresh_current_url(self):
+        self.driver.get(self.driver.current_url)
+        self.driver.refresh()
 
 
