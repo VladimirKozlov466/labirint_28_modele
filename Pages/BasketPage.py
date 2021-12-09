@@ -10,6 +10,9 @@ class BasketPage(BasePage):
 
     BASKET_URL = "https://www.labirint.ru/cart/"
 
+    # used for test with input quantity into input field
+    QUANTITY_TO_ENTER = "11"
+
     # locator for "Лабиринт" logo by which we can return at home page
     LABIRINT_MAIN_LOGO = (By.XPATH, '//a[@title="Лабиринт - самый большой книжный интернет магазин"]')
 
@@ -28,7 +31,8 @@ class BasketPage(BasePage):
     QUANTITY_OF_EACH_ITEM_IN_BASKET = (By.XPATH, '//input[@class="quantity"]')
     # locator of button "+" increase quantity of item (book) in purchase at Basket page
     INCREASE_QUANTITY_OF_ITEM = (By.XPATH, '//span[@class="btn btn-increase btn-increase-cart"]')
-
+    # locator of button "-" decrease quantity of item (book) in purchase at Basket page
+    DECREASE_QUANTITY_OF_ITEM = (By.XPATH, '//span[@class="btn btn-lessen btn-lessen-cart"]')
 
 
     """constructor of the page class"""

@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from Config.config import TestData
 from Pages.BasketPage import BasketPage
@@ -100,7 +102,8 @@ class TestBasketFmHomePage(BaseTest):
         # click to button "Корзина" at the header
         self.basketPage.do_click(TestData.BASKET_BUTTON_AT_HEADER)
         # find all quantity input fields of all items
-        self.list_of_quantity_of_all_items_in_basket = self.basketPage.find_several_element(BasketPage.QUANTITY_OF_EACH_ITEM_IN_BASKET)
+        self.list_of_quantity_of_all_items_in_basket = self.basketPage.find_several_element(
+            BasketPage.QUANTITY_OF_EACH_ITEM_IN_BASKET)
         # find input field of last added item
         first_book_input_field = self.list_of_quantity_of_all_items_in_basket[0]
         # find quantity of last added item
@@ -135,4 +138,97 @@ class TestBasketFmHomePage(BaseTest):
         new_quantity_of_first_book = first_book_input_field.get_attribute(TestData.ATTRIBUTE_VALUE)
         assert int(new_quantity_of_first_book) - int(quantity_of_first_book) == 1
 
+    # this test check that quantity of item (book) added into basket by "В КОРЗИНУ" button to be changed by
+    # entering digits in the input field which placed below item left of button "-"
+    def test_that_quantity_can_set_by_enter_digits_into_input_field(self):
+        self.basketPage = BasketPage(self.driver)
+        self.basketPage.remove_all_good_in_basket_and_reload_page()
+        # find all buttons "В КОРЗИНУ" at Home page
+        self.list_of_buttons_move_into_basket = self.basketPage.find_several_element(BasketPage.MOVE_BOOK_TO_BASKET)
+        # find and add into basket "В КОРЗИНУ" the first book at home page
+        self.list_of_buttons_move_into_basket[0].click()
+        # close popup action window
+        self.basketPage.do_click(TestData.CLOSE_POPUP_ANY_ACTION)
+        # click to button "Корзина" at the header
+        self.basketPage.do_click(TestData.BASKET_BUTTON_AT_HEADER)
+        # find all quantity input fields of all items
+        self.list_of_quantity_of_all_items_in_basket = self.basketPage.find_several_element(
+            BasketPage.QUANTITY_OF_EACH_ITEM_IN_BASKET)
+        # find input field of last added item
+        first_book_input_field = self.list_of_quantity_of_all_items_in_basket[0]
+        # find quantity of last added item
+        quantity_of_first_book = first_book_input_field.get_attribute(TestData.ATTRIBUTE_VALUE)
+        # send quantity into input field
+        self.basketPage.clear_text_in_element_and_send_text_with_enter(
+            first_book_input_field, BasketPage.QUANTITY_TO_ENTER)
+        # make new request of quantity
+        new_quantity_of_first_book = first_book_input_field.get_attribute(TestData.ATTRIBUTE_VALUE)
+        assert int(quantity_of_first_book) == 1
+        assert int(new_quantity_of_first_book) == int(BasketPage.QUANTITY_TO_ENTER)
 
+    # this test check that quantity of item (book) added into basket by "В КОРЗИНУ" button has been decreased by
+    # pressing button "-"
+    def test_that_quantity_can_decreased_by_pressing_decrease_button(self):
+        self.basketPage = BasketPage(self.driver)
+        self.basketPage.remove_all_good_in_basket_and_reload_page()
+        # find all buttons "В КОРЗИНУ" at Home page
+        self.list_of_buttons_move_into_basket = self.basketPage.find_several_element(BasketPage.MOVE_BOOK_TO_BASKET)
+        # find and add into basket "В КОРЗИНУ" the first book at home page
+        self.list_of_buttons_move_into_basket[0].click()
+        # close popup action window
+        self.basketPage.do_click(TestData.CLOSE_POPUP_ANY_ACTION)
+        # click to button "Корзина" at the header
+        self.basketPage.do_click(TestData.BASKET_BUTTON_AT_HEADER)
+        # find all quantity input fields of all items
+        self.list_of_quantity_of_all_items_in_basket = self.basketPage.find_several_element(
+            BasketPage.QUANTITY_OF_EACH_ITEM_IN_BASKET)
+        # find input field of last added item
+        first_book_input_field = self.list_of_quantity_of_all_items_in_basket[0]
+        # send quantity into input field
+        self.basketPage.clear_text_in_element_and_send_text_with_enter(
+            first_book_input_field, BasketPage.QUANTITY_TO_ENTER)
+        # find quantity of last added item
+        quantity_of_first_book = first_book_input_field.get_attribute(TestData.ATTRIBUTE_VALUE)
+        # find all "-" buttons
+        self.list_of_increase_buttons = self.basketPage.find_several_element(BasketPage.DECREASE_QUANTITY_OF_ITEM)
+        # decrease quantity of last added item for one piece by pressing ones to button "-"
+        self.list_of_increase_buttons[0].click()
+        # request again quantity of last added item
+        new_quantity_of_first_book = first_book_input_field.get_attribute(TestData.ATTRIBUTE_VALUE)
+        assert int(quantity_of_first_book) - int(new_quantity_of_first_book) == 1
+
+    # check that price of item (book) added into basket by "В КОРЗИНУ" button changing according to new quantity
+    def test_that_sum_will_raise_accordingly_when_quantity_of_item_increased(self):
+        self.basketPage = BasketPage(self.driver)
+        self.basketPage.remove_all_good_in_basket_and_reload_page()
+        # find all buttons "В КОРЗИНУ" at Home page
+        self.list_of_buttons_move_into_basket = self.basketPage.find_several_element(BasketPage.MOVE_BOOK_TO_BASKET)
+        # find and add into basket "В КОРЗИНУ" the first book at home page
+        self.list_of_buttons_move_into_basket[0].click()
+        # close popup action window
+        self.basketPage.do_click(TestData.CLOSE_POPUP_ANY_ACTION)
+        # click to button "Корзина" at the header
+        self.basketPage.do_click(TestData.BASKET_BUTTON_AT_HEADER)
+        # find all quantity input fields of all items
+        self.list_of_quantity_of_all_items_in_basket = self.basketPage.find_several_element(
+            BasketPage.QUANTITY_OF_EACH_ITEM_IN_BASKET)
+        # find all prices of all book in Basket at Basket page
+        self.list_of_book_prices_in_basket = self.basketPage.find_several_element(BasketPage.BOOK_PRICE_STRING)
+        # find element which contains price of first book at Basket page
+        price_of_first_book_string = self.list_of_book_prices_in_basket[0]
+        # get (int) price of first book in Basket
+        first_book_price_in_basket = self.basketPage.price_by_int(price_of_first_book_string)
+        # find input field of last added item
+        first_book_input_field = self.list_of_quantity_of_all_items_in_basket[0]
+        # send quantity for first book into input field
+        self.basketPage.clear_text_in_element_and_send_text_with_enter(
+            first_book_input_field, BasketPage.QUANTITY_TO_ENTER)
+        # due to changing of quantity and sum takes about 3-5 seconds page needs to refresh page or set time.sleep
+        time.sleep(5)
+        # find all prices of all book in Basket at Basket page
+        self.list_of_book_prices_in_basket_new = self.basketPage.find_several_element(BasketPage.BOOK_PRICE_STRING)
+        # find element which contains price of first book at Basket page
+        price_of_first_item = self.list_of_book_prices_in_basket_new[0]
+        # get (int) price of first item in Basket with new quantity
+        new_price = self.basketPage.price_by_int(price_of_first_item)
+        assert (first_book_price_in_basket * int(BasketPage.QUANTITY_TO_ENTER)) == new_price

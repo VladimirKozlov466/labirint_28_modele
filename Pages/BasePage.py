@@ -41,6 +41,14 @@ class BasePage:
         input_field.send_keys(text)
         input_field.send_keys(u'\ue007')
 
+    """to clear search field, send keys at search field and press ENTER key"""
+    def clear_text_in_element_and_send_text_with_enter(self, element, text):
+        action = ActionChains(self.driver)
+        action.move_to_element(element).click().pause(2)
+        element.clear()
+        element.send_keys(text)
+        element.send_keys(u'\ue007')
+
     """to get text at the element"""
     def get_element_text(self, by_locator):
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
