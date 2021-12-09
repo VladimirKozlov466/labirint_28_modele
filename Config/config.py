@@ -41,9 +41,17 @@ class TestData:
     # Names of attributes
     ATTRIBUTE_ID = "id"
     ATTRIBUTE_TITLE = "title"
+    ATTRIBUTE_VALUE = "value"
 
-    # Cross page locators
 
+    """CROSS PAGE LOCATORS"""
+
+    # locator for button to close popup which appear after any action ("В Корзину", "ОТЛОЖИТЬ", etc)
+    CLOSE_POPUP_ANY_ACTION = (By.XPATH, '//a[@class="b-basket-popinfo-close"]')
+
+    """for BASKET"""
+    # locator for Basket "Корзина" button at header
+    BASKET_BUTTON_AT_HEADER = (By.XPATH, '//a[@class="b-header-b-personal-e-link top-link-main analytics-click-js cart-icon-js"]')
     # locator for Basket "Корзина" counter
     BASKET_COUNTER = (By.XPATH, '//span[@class="b-header-b-personal-e-icon-count-m-cart basket-in-cart-a"]')
 

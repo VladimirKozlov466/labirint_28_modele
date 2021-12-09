@@ -70,7 +70,8 @@ class PostponePage(BasePage):
     suspection that bag presents in program - cookies not fully removed when page reload after starting new test """
     def clear_postpone_reload_page(self):
         self.do_click(PostponePage.POSTPONED_BOOKS_BUTTON)
-        self.do_click(PostponePage.CLEAR_POSTPONE_BUTTON)
-        alert = self.driver.switch_to.alert
-        alert.accept()
+        if self.is_visible(PostponePage.CLEAR_POSTPONE_BUTTON):
+            self.do_click(PostponePage.CLEAR_POSTPONE_BUTTON)
+            alert = self.driver.switch_to.alert
+            alert.accept()
         self.do_click(PostponePage.LABIRINT_MAIN_LOGO)
