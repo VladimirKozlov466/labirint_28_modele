@@ -46,6 +46,9 @@ class TestData:
     ATTRIBUTE_TITLE = "title"
     ATTRIBUTE_VALUE = "value"
 
+    # Data for Search page
+    AUTHOR_SEARCH = "Лев Толстой"
+
 
     """CROSS PAGE LOCATORS"""
 
@@ -59,3 +62,4 @@ class TestData:
     BASKET_COUNTER = (By.XPATH, '//span[@class="b-header-b-personal-e-icon-count-m-cart basket-in-cart-a"]')
 
 
+    """for Search"""
