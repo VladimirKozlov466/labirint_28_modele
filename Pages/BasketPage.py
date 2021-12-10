@@ -24,6 +24,8 @@ class BasketPage(BasePage):
     PURCHASE_FINAL_SUM = (By.ID, "basket-default-sumprice-discount")
     # locator for button "Очистить корзину" at Basket page
     REMOVE_ALL_GOODS_IN_BASKET = (By.XPATH, '//a[@class="b-link-popup" and contains(text(), "Очистить корзину")]')
+    # locator for text "Ваша корзина пуста. Почему?" which show that Basket is empty
+    BASKET_IS_EMPTY = (By.XPATH, '//span[@class="g-alttext-small g-alttext-grey g-alttext-head" and contains(text(), "Ваша корзина пуста. Почему?")]')
     # locator for popup window with button "Оформить"
     POPUP_CHECKOUT_BOOK_BUTTON = (By.XPATH, '//a[@class="color_white btn btn-small btn-primary basket-go analytics-click-js"]')
     # locator of input field for quantity of each item (book) in user order at Basket page which is displayed below

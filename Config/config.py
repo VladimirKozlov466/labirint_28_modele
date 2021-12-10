@@ -38,6 +38,9 @@ class TestData:
     # Successful deletion of postponed books message
     SUCCESSFUL_DELETION = "Выбранные товары удалены!"
 
+    # Successful deletion of books from Basket
+    YOUR_BASKET_IS_EMPTY_TEXT = "Ваша корзина пуста. Почему?"
+
     # Names of attributes
     ATTRIBUTE_ID = "id"
     ATTRIBUTE_TITLE = "title"

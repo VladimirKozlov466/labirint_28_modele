@@ -44,6 +44,26 @@ class TestBasketFmHomePage(BaseTest):
         first_book_price_in_basket = self.basketPage.price_by_int(price_of_first_book_string)
         assert first_book_price == first_book_price_in_basket
 
+    # this test check that "Очистить корзину" button displayed at right side above order details clean the basket
+    def test_that_clear_basket_button_clean_basket(self):
+        self.basketPage = BasketPage(self.driver)
+        # find all buttons "В КОРЗИНУ" at Home page
+        self.list_of_buttons_move_into_basket = self.basketPage.find_several_element(BasketPage.MOVE_BOOK_TO_BASKET)
+        # find and add into basket "В КОРЗИНУ" the first book at home page
+        self.list_of_buttons_move_into_basket[0].click()
+        # close popup action window
+        self.basketPage.do_click(TestData.CLOSE_POPUP_ANY_ACTION)
+        # click to button "Корзина" at the header
+        self.basketPage.do_click(TestData.BASKET_BUTTON_AT_HEADER)
+        # find all prices of all book in Basket at Basket page
+        self.list_of_book_prices_in_basket = self.basketPage.find_several_element(BasketPage.BOOK_PRICE_STRING)
+        # find element which contains price of first book at Basket page
+        price_of_first_book_string = self.list_of_book_prices_in_basket[0]
+        self.basketPage.do_click(BasketPage.REMOVE_ALL_GOODS_IN_BASKET)
+        result = self.basketPage.get_element_text(BasketPage.BASKET_IS_EMPTY)
+        assert self.basketPage.element_is_not_visible(price_of_first_book_string)
+        assert result.lower() == TestData.YOUR_BASKET_IS_EMPTY_TEXT.lower()
+
     # this test find first book at home page and get price of book than move this book into Basket and check price of
     # this book in the Basket doesn't changing and equal to final sum of order "Подытог без учета доставки"
     def test_first_book_moved_in_basket_and_price_is_same_and_equal_final_sum(self):
