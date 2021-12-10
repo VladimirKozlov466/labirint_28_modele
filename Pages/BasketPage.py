@@ -33,7 +33,10 @@ class BasketPage(BasePage):
     INCREASE_QUANTITY_OF_ITEM = (By.XPATH, '//span[@class="btn btn-increase btn-increase-cart"]')
     # locator of button "-" decrease quantity of item (book) in purchase at Basket page
     DECREASE_QUANTITY_OF_ITEM = (By.XPATH, '//span[@class="btn btn-lessen btn-lessen-cart"]')
-
+    # locator of button "Начать оформление" (small one) which is at right side of the Basket page
+    START_CHECKOUT = (By.XPATH, '//input[@class="btn btn-small btn-more"]')
+    # locator of button "Оформить и оплатить" at Checkout page
+    CHECKOUT_AND_PAY = (By.XPATH, '//input[@value="Оформить и оплатить"]')
 
     """constructor of the page class"""
     def __init__(self, driver):

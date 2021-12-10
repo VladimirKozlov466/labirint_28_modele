@@ -1,3 +1,6 @@
+import contextlib
+import time
+
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -136,5 +139,4 @@ class BasePage:
     """ Returns current browser URL. """
     def get_current_url(self):
         return self.driver.current_url
-
 
