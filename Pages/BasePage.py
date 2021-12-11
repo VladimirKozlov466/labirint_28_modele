@@ -62,6 +62,11 @@ class BasePage:
         element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(by_locator))
         return bool(element)
 
+    """to check that elements are visible"""
+    def are_visible(self, by_locator) -> bool:
+        elements = WebDriverWait(self.driver, 10).until(EC.visibility_of_all_elements_located(by_locator))
+        return bool(elements)
+
     """to check that element is NOT visible"""
     def is_not_visible(self, by_locator) -> bool:
         element = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(by_locator))
@@ -71,6 +76,12 @@ class BasePage:
 
     def element_is_not_visible(self, by_element) -> bool:
         element = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element(by_element))
+        return bool(element)
+
+    """to check that element is visible"""
+
+    def element_is_visible(self, by_element) -> bool:
+        element = WebDriverWait(self.driver, 10).until(EC.visibility_of(by_element))
         return bool(element)
 
     """ to get title of the loaded page"""
@@ -124,7 +135,7 @@ class BasePage:
     def scroll_to_element(self, element):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-    """this method accept cookies policy and close popup window"""
+    """this method accept cookies policy and close popup window if displayed"""
     def accept_cookies_policy(self):
         if self.is_visible(COOKIES_POLICY_BUTTON):
             self.do_click(COOKIES_POLICY_BUTTON)

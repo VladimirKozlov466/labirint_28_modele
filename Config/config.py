@@ -48,6 +48,9 @@ class TestData:
 
     # Data for Search page
     AUTHOR_SEARCH = "Лев Толстой"
+    SEARCHED_BOOK_NAME = "Война и мир"
+    SEARCHED_RUSSIAN_BOOK_NAME_BY_LATIN = "jcnhjd cjrhjdbo" # "остров сокровищ"
+    EXPECTED_RESULT_BOOK_NAME = "остров сокровищ"
 
 
     """CROSS PAGE LOCATORS"""

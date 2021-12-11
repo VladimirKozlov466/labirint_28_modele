@@ -22,7 +22,32 @@ class SearchPage(BasePage):
 
     # locator for Author name
     AUTHOR_NAME = (By.XPATH, '//div[@class="product-author"]/a')
-    
+    # locator for book's description which is under book cover
+    BOOK_DESCRIPTION = (By.XPATH, '//a[@class="product-title-link"]')
+
+    # locators for Submenu of "ВСЕ ФИЛЬТРЫ"
+    # button "ВСЕ ФИЛЬТРЫ" which is in page body and opens hidden submenu at left side
+    ALL_FILTERS = (By.XPATH, '//span[@class="navisort-item__content" and contains(text(), "ВСЕ ФИЛЬТРЫ")]')
+    # button "Бумажные книги" in submenu "ВСЕ ФИЛЬТРЫ" to enable/disable books from search
+    PAPER_BOOKS_IN_ALL_FILTERS = (By.XPATH, '//span[contains(text(), "Бумажные книги")]')
+    # button "Электронные книги" in submenu "ВСЕ ФИЛЬТРЫ" to enable/disable books from search
+    DIGITAL_BOOKS_IN_ALL_FILTERS = (By.XPATH, '//span[contains(text(), "Электронные книги")]')
+    # button "Показать" down at the end of submenu "ВСЕ ФИЛЬТРЫ" to confirm filter settings
+    SHOW_RESULTS = (By.XPATH, '//input[@class="show-goods__button" and @value="Показать"]')
+
+    # locator for quick button which show present search setting displayed at the page body below button "ВСЕ ФИЛЬТРЫ"
+    # locator showing that "Бумажные книги" are enabled (this button remove this setting from search when clicked)
+    ENABLED_PAPER_BOOKS = (By.XPATH, '//div[contains(text(), "Бумажные книги")]')
+    # locator showing that "В наличии" are enabled (this button remove this setting from search when clicked)
+    BOOKS_AVAILABLE_CURRENTLY = (By.XPATH, '//div[@class="filter-reset__content" and contains(text(), "В наличии")]')
+
+    # locators for elements displayed below book cover
+    # locator for label "ЭЛЕКТРОННАЯ КНИГА" which is placed below book cover
+    DIGITAL_BOOKS_LABEL = (By.XPATH, '//span[@class="card-label__text card-label__text_inversed" and contains(text(), '
+                                     '"Электронная книга")]')
+    # locator for button "КУПИТЬ" displayed only if book currently available at store
+    BUY_NOW_BUTTON = (By.XPATH, '//a[@class="btn buy-link js-ebooks-buy-btn btn-primary" and contains(text(), '
+                                '"КУПИТЬ")]')
 
 
 
