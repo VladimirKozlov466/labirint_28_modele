@@ -34,12 +34,21 @@ class SearchPage(BasePage):
     DIGITAL_BOOKS_IN_ALL_FILTERS = (By.XPATH, '//span[contains(text(), "Электронные книги")]')
     # button "Показать" down at the end of submenu "ВСЕ ФИЛЬТРЫ" to confirm filter settings
     SHOW_RESULTS = (By.XPATH, '//input[@class="show-goods__button" and @value="Показать"]')
+    # button "ЦЕНА" clicking which hidden submenu for price setting appears
+    PRICE_MENU_BUTTON = (By.XPATH, '//div[@class="bl-name" and contains(text(), "ЦЕНА")]')
+    # input field to set minimum price of items to be searched
+    SET_MIN_PRICE = (By.ID, "section-search-form-price_min")
+    # input field to set maximum price of items to be searched
+    SET_MAX_PRICE = (By.ID, "section-search-form-price_max")
+
+
 
     # locator for quick button which show present search setting displayed at the page body below button "ВСЕ ФИЛЬТРЫ"
     # locator showing that "Бумажные книги" are enabled (this button remove this setting from search when clicked)
     ENABLED_PAPER_BOOKS = (By.XPATH, '//div[contains(text(), "Бумажные книги")]')
     # locator showing that "В наличии" are enabled (this button remove this setting from search when clicked)
     BOOKS_AVAILABLE_CURRENTLY = (By.XPATH, '//div[@class="filter-reset__content" and contains(text(), "В наличии")]')
+    ALL_CURRENT_SETTINGS = (By.XPATH, '//div[@class="filter-reset__content"]')
 
     # locators for elements displayed below book cover
     # locator for label "ЭЛЕКТРОННАЯ КНИГА" which is placed below book cover
@@ -49,6 +58,10 @@ class SearchPage(BasePage):
     BUY_NOW_BUTTON = (By.XPATH, '//a[@class="btn buy-link js-ebooks-buy-btn btn-primary" and contains(text(), '
                                 '"КУПИТЬ")]')
 
+    # locator for book price
+    BOOK_PRICE_STRING = (By.XPATH, '//span[@class="price-val"]/span')
+    # locator for pagination page button (for test use page 2)
+    PAGINATION_PAGE_BUTTON = (By.XPATH, '//a[@class="pagination-next__text" and contains(text(), "Следующая")]')
 
 
 
@@ -68,3 +81,8 @@ class SearchPage(BasePage):
         result = list(set(element_in_list) & set(name_list))
         return len(name_list) == len(result)
 
+    """to get price of the book"""
+    def price_by_int(self, element):
+        element_text = element.text
+        price_string = element_text.replace(' ', '').replace('₽', '')
+        return int(price_string)

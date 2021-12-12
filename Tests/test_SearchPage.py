@@ -119,7 +119,7 @@ class TestSearchPage(BaseTest):
     # this test check that quick button "В наличии" which displayed in string below "ВСЕ ФИЛЬТРЫ" button clickable
     # and after click remove from search page all books with status "В наличии" (means all books with button "В КОРЗИНУ"
     # will disappear from search page)
-    def test_that(self):
+    def test_that_quick_button_books_available_works(self):
         self.searchPage = SearchPage(self.driver)
         # find all books with button "В КОРЗИНУ" (books available currently)
         self.list_of_currently_available = self.searchPage.find_several_element(SearchPage.BUY_NOW_BUTTON)
@@ -128,3 +128,4 @@ class TestSearchPage(BaseTest):
         # check that all books with button "В КОРЗИНУ" has been disappeared
         for book in self.list_of_currently_available:
             assert self.searchPage.element_is_not_visible(book)
+

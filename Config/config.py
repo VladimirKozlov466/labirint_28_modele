@@ -52,6 +52,10 @@ class TestData:
     SEARCHED_RUSSIAN_BOOK_NAME_BY_LATIN = "jcnhjd cjrhjdbo" # "остров сокровищ"
     EXPECTED_RESULT_BOOK_NAME = "остров сокровищ"
 
+    # Data for Search page filter
+    MIN_PRICE = "500"
+    MAX_PRICE = "600"
+
 
     """CROSS PAGE LOCATORS"""
 

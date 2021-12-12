@@ -59,6 +59,7 @@ class TestPostponeAtHomePage(BaseTest):
         assert int(quantity_text_value_after) == 1
 
     # postpone several books and check the quantity is match with quantity at the header
+    @pytest.mark.xfail
     def test_quantity_of_postponed_books_at_the_header_numerous_selection(self):
         self.postponePage = PostponePage(self.driver)
         self.postponePage.clear_postpone_reload_page()
