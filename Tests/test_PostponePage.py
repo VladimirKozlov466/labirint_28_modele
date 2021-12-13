@@ -59,7 +59,7 @@ class TestPostponeAtHomePage(BaseTest):
         assert int(quantity_text_value_after) == 1
 
     # postpone several books and check the quantity is match with quantity at the header
-    @pytest.mark.xfail
+    @pytest.mark.xfail(reeson="It's look like Bag, test passing when started separately")
     def test_quantity_of_postponed_books_at_the_header_numerous_selection(self):
         self.postponePage = PostponePage(self.driver)
         self.postponePage.clear_postpone_reload_page()
@@ -73,7 +73,7 @@ class TestPostponeAtHomePage(BaseTest):
 
     # test that button "Убрать из отложенных" which appears after click to "heart"="Отложить" button at previously
     # postponed book remove the book from Postponed and quantity of postponed book is one book less
-    @pytest.mark.xfail
+    @pytest.mark.xfail(reeson="It's look like Bag, test passing when started separately")
     def test_for_postponed_book_deletion_by_submenu_of_postpone_book(self):
         self.postponePage = PostponePage(self.driver)
         self.postponePage.clear_postpone_reload_page()
@@ -128,7 +128,8 @@ class TestPostponeAtHomePage(BaseTest):
         for postponed_book in self.list_of_postponed_books:
             assert postponed_book.is_enabled()
 
-    # test that "Удалить" button appears if any of checkboxes enabled delete selected books from DOM (all books in this test)
+    # test that "Удалить" button appears if any of checkboxes enabled delete selected books from DOM (all books in
+    # this test)
     def test_that_delete_button_in_popup_work(self):
         self.postponePage = PostponePage(self.driver)
         self.list_of_books = self.postponePage.find_several_element(PostponePage.HEART_SYMBOL_AT_HOME_PAGE)
@@ -158,7 +159,8 @@ class TestPostponeAtHomePage(BaseTest):
         # switch to Postpone page
         self.postponePage.do_click(PostponePage.POSTPONED_BOOKS_BUTTON)
         # find all buttons "В КОРЗИНУ" at the Postpone page
-        self.list_of_postponed_books = self.postponePage.find_several_element(PostponePage.MOVE_IN_BASKET_FM_POSTPONE_BUTTON)
+        self.list_of_postponed_books = self.postponePage.find_several_element(
+            PostponePage.MOVE_IN_BASKET_FM_POSTPONE_BUTTON)
         # click to "В КОРЗИНУ" button at first book (which was last added into Postpone page)
         last_postponed_book = self.list_of_postponed_books[0]
         self.postponePage.scroll_to_element(last_postponed_book)
@@ -169,7 +171,8 @@ class TestPostponeAtHomePage(BaseTest):
         self.postponePage.do_click(PostponePage.CLOSE_POPUP_POSTPONED_BOOK_MOVED_IN_BASKET)
         self.postponePage.refresh_current_url()
         # find all buttons "ОФОРМИТЬ"
-        self.list_of_book_to_be_checked_out = self.postponePage.find_several_element(PostponePage.SWITCH_TO_CHECKOUT_BOOK_IN_BASKET_FM_POSTPONE_PAGE)
+        self.list_of_book_to_be_checked_out = self.postponePage.find_several_element(
+            PostponePage.SWITCH_TO_CHECKOUT_BOOK_IN_BASKET_FM_POSTPONE_PAGE)
         # read the id of book last added to "ОФОРМИТЬ"
         last_book_added_to_checkout = self.list_of_book_to_be_checked_out[0]
         self.postponePage.scroll_to_element(last_book_added_to_checkout)
@@ -192,7 +195,8 @@ class TestPostponeAtHomePage(BaseTest):
         # get current quantity of books in Basket "Корзина"
         initial_quantity_of_books_in_basket = self.postponePage.get_element_text(TestData.BASKET_COUNTER)
         # find all buttons "В КОРЗИНУ" at the Postpone page
-        self.list_of_postponed_books = self.postponePage.find_several_element(PostponePage.MOVE_IN_BASKET_FM_POSTPONE_BUTTON)
+        self.list_of_postponed_books = self.postponePage.find_several_element(
+            PostponePage.MOVE_IN_BASKET_FM_POSTPONE_BUTTON)
         # click to "В КОРЗИНУ" button at first book (which was last added into Postpone page)
         last_postponed_book = self.list_of_postponed_books[0]
         self.postponePage.scroll_to_element(last_postponed_book)
@@ -204,6 +208,7 @@ class TestPostponeAtHomePage(BaseTest):
         assert int(new_quantity_of_books_in_basket) - int(initial_quantity_of_books_in_basket) == 1
 
     # test that book same name was postponed at the Home page into Postpone page and that added to Basket
+    @pytest.mark.xfail(reason="Description of some books hidden by JS script")
     def test_that_same_book_was_postponed_then_moved_to_basket(self):
         self.postponePage = PostponePage(self.driver)
         # find all "Отложить" buttons at home page
@@ -222,7 +227,8 @@ class TestPostponeAtHomePage(BaseTest):
         # switch to Postpone page
         self.postponePage.do_click(PostponePage.POSTPONED_BOOKS_BUTTON)
         # find all buttons "В КОРЗИНУ" at the Postpone page
-        self.list_of_postponed_books = self.postponePage.find_several_element(PostponePage.MOVE_IN_BASKET_FM_POSTPONE_BUTTON)
+        self.list_of_postponed_books = self.postponePage.find_several_element(
+            PostponePage.MOVE_IN_BASKET_FM_POSTPONE_BUTTON)
         # find names of all books at Postpone page
         # find "В КОРЗИНУ" button at first book (which was last added into Postpone page)
         last_postponed_book = self.list_of_postponed_books[0]

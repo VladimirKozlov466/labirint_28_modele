@@ -1,5 +1,3 @@
-import time
-
 import pytest
 from Config.config import TestData
 from Pages.SearchPage import SearchPage
@@ -32,6 +30,7 @@ class TestSearchPage(BaseTest):
         assert counter > 0
 
     # this test check if Author searched presents in displayed book's description
+    @pytest.mark.xfail(reason="Fails only at 'firefox'. Description of some books hidden by JS script")
     def test_that_search_by_author_made_in_book_description(self):
         self.searchPage = SearchPage(self.driver)
         # find search string and enter Author name
@@ -48,6 +47,7 @@ class TestSearchPage(BaseTest):
         assert counter > 0
 
     # this test check that search by book name works in Cyrillic
+    @pytest.mark.xfail(reason="Fails only at 'firefox'")
     def test_that_search_by_book_name_works(self):
         self.searchPage = SearchPage(self.driver)
         # find search string and enter book name

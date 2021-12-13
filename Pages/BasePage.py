@@ -1,6 +1,3 @@
-import contextlib
-import time
-
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -123,8 +120,7 @@ class BasePage:
         second_level_submenu = WebDriverWait(self.driver, 15).until(EC.element_to_be_clickable(second_level_locator))
         second_level_submenu.click()
 
-
-        """!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"""
+    """to do!"""
     """to get attribute of element"""
     def get_attribute_value(self, by_locator, attr_name):
         element = WebDriverWait(self.driver, 10).until(EC.invisibility_of_element_located(by_locator))
@@ -150,4 +146,3 @@ class BasePage:
     """ Returns current browser URL. """
     def get_current_url(self):
         return self.driver.current_url
-

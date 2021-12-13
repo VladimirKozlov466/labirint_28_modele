@@ -1,6 +1,4 @@
 import time
-
-import pytest
 from Config.config import TestData
 from Pages.BasketPage import BasketPage
 from Tests.test_base import BaseTest

@@ -1,11 +1,9 @@
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
-
 from Config.config import TestData
 from Pages.BasePage import BasePage
 
-class SearchPage(BasePage):
 
+class SearchPage(BasePage):
     """By locators - OR"""
     URL = TestData.BASE_URL + "search/"
 
@@ -41,8 +39,6 @@ class SearchPage(BasePage):
     # input field to set maximum price of items to be searched
     SET_MAX_PRICE = (By.ID, "section-search-form-price_max")
 
-
-
     # locator for quick button which show present search setting displayed at the page body below button "ВСЕ ФИЛЬТРЫ"
     # locator showing that "Бумажные книги" are enabled (this button remove this setting from search when clicked)
     ENABLED_PAPER_BOOKS = (By.XPATH, '//div[contains(text(), "Бумажные книги")]')
@@ -63,10 +59,8 @@ class SearchPage(BasePage):
     # locator for pagination page button (for test use page 2)
     PAGINATION_PAGE_BUTTON = (By.XPATH, '//a[@class="pagination-next__text" and contains(text(), "Следующая")]')
 
-
-
-
     """constructor of the page class"""
+
     def __init__(self, driver):
         super().__init__(driver)
         self.driver.get(SearchPage.URL)
@@ -74,6 +68,7 @@ class SearchPage(BasePage):
     """Page Actions"""
 
     """to check if all "search words" are in text result if result was searched in attribute value"""
+
     def search_match_fully(self, element, search_name):
         element_text = element.get_attribute(TestData.ATTRIBUTE_TITLE)
         element_in_list = element_text.lower().split()
@@ -82,6 +77,7 @@ class SearchPage(BasePage):
         return len(name_list) == len(result)
 
     """to get price of the book"""
+
     def price_by_int(self, element):
         element_text = element.text
         price_string = element_text.replace(' ', '').replace('₽', '')
