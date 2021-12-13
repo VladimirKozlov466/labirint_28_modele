@@ -2,3 +2,4 @@ pytest
 selenium
 pytest-xdist
 pytest-forked
+pytest-html
