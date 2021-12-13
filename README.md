@@ -55,3 +55,11 @@ run all tests and log to html format in parallel mode execution:
 to run one set of tests: pytest Tests/test_File_Name.py
 
 to run one test: pytest Tests/test_File_Name.py::TestClassName::test_name
+
+If you run tests with log to html, TO GET LOG of test execution:
+
+rightclick on "hubSpot.html" (file will be generated after test execution)
+click COPY/PATH/Reference
+click to "Absolute Path"
+open reference in browser.
+To get new results after execution "refresh" page with results.![Снимок экрана 2021-12-13 в 19 11 19](https://user-images.githubusercontent.com/86114164/145835347-10055d40-b020-45bd-8f36-2a59835e3fe2.png)
